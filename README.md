@@ -1,8 +1,8 @@
-myNotes is my attempt to create terminal-based notes tool.
+myNotes is my attempt to create terminal-based notes-storing tool.
 I'll start with using aliases and simple python script.
 
 motto of myNotes is:
-"OSZCZĘDZAJ RAM GDZIEKOLWIEK JESTEŚ"
+"OSZCZĘDZAJ RAM GDZIEKOLWIEK JESTEŚ, DZIWKO"
 
 To make it work you need to add an alias:
 >alias note ~/note.py
@@ -14,7 +14,7 @@ Example of usage:
   adds note "dupa" to certain file.
 
 Arguments:
-  p|a - prepends|appends text to the file
+  (p or +) - prepends text to the file
   P|A - removes first|last text in the file
   s - searches for a text and returns all occurences
 

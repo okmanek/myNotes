@@ -2,15 +2,14 @@
 from sys import argv
 
 argc = len(argv)
-availableOperators = ('+', '-', '/')
-#+ dodawanie, - odejmowanie, / szukanie
+availableOperators = ('+', '-', '/', '?')#needed?
 
-#filepaths:
-#tak naprawde nie bedzie potrzebne (chyba)
-notePath = '/home/i/.myNotes/note.txt'
-musePath = '/home/i/.myNotes/muse.txt'
-filmPath = '/home/i/.myNotes/film.txt'
-bookPath = '/home/i/.myNotes/book.txt'
+filePaths = {
+	'note' : '/home/i/.myNotes/note.txt',
+	'muse' : '/home/i/.myNotes/muse.txt',
+	'film' : '/home/i/.myNotes/film.txt',
+	'book' : '/home/i/.myNotes/book.txt',
+}
 
 #http://stackoverflow.com/questions/5914627/prepend-line-to-beginning-of-a-file
 def prependLine(filename, line):
@@ -19,23 +18,20 @@ def prependLine(filename, line):
         f.seek(0, 0)
         f.write(line.rstrip('\r\n') + '\n' + content)
 
-
-
-
 if( argc < 3 ):#too few args
 	print 'za malo argumentow'
 
 elif(argc == 3):#example: ">note dupa"
 	#choosing right folder based on parameter from alias
 	if( argv[1] == 'note' ):
-		filePath = notePath
-		print notePath
+		filePath = filePaths['note']
+		print filePath
 	elif( argv[1] == 'muse' ):
-		filePath = musePath
+		filePath = filePaths['muse']
 	elif( argv[1] == 'film' ):
-		filePath = filmPath
+		filePath = filePaths['film']
 	elif( argv[1] == 'book' ):
-		filePath = bookPath
+		filePath = filePaths['book']
 
 elif( argc == 4):#example: ">note + dupa"
 	if( argv[2] == '+' ):#dodanie nowego wpisu
