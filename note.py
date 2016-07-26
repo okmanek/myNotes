@@ -1,8 +1,10 @@
 #!/usr/bin/python
 from sys import argv
+import os
 
 argc = len(argv)
 availableOperators = ('+', '-', '/', '?')#needed?
+searchResultNeighbours = 1 #how many surrounding lines is shown while searching
 
 filePaths = {
 	'note' : '/home/i/.myNotes/note.txt',
@@ -31,25 +33,39 @@ else:#if number of args is 2 or more, choose appropriate filepath
 	elif( argv[1] == 'book' ):
 		filePath = filePaths['book']
 		#note that there cannot be bad parameter because of the aliases system
-	
+
+	#> note #just show content	
 	if( argc == 2 ):#just show content
 		file = open(filePath, 'r')
 		fileContent = file.read()
 		print fileContent
 		file.close()
 
+	#>note "text to add"
 	if( argc == 3 ):#just for now
-		print argv[2]
-		file = open(filePath, 'w')
 		prependLine(filePath, "")
 		prependLine( filePath, argv[2] )
-		#open(filePath, "w").write("#test firstline\n" + open(filePath).read())
 		print 'added text: ' + argv[2]
-		file.close()
-		print 'added'
-	
+
+	#>note + "text to process" # where '+' can be any operator
 	if( argc == 4):
-		pass
+		oper = argv[2]
+		if( oper == '+' ):
+			prependLine( filePath, "" )
+			prependLine( filePath, argv[3] )
+			print 'added text: ' + argv[3]
+		elif( oper == '/' ) or (oper == '?' ):
+			os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[3], filePath))#-nr?
+		elif( oper == '-' ):
+			print 'odejmowanie'
+			#not tested yet!!!
+			lineNum = os.system('grep -nr %s %s | head -c 1' % (searchedText, fileName))
+			with open(fileName, "r") as textObj:
+				list = list(textObj)
+			del list[ lineNum - 1 ]#sasiedzi - dodac
+			with open("a.txt", "w") as textObj:
+				for n in list:
+					textObj.write(n)
 
 
 	# 
