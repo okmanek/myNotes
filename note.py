@@ -13,6 +13,8 @@ filePaths = {
 	'book' : '/home/i/.myNotes/book.txt',
 }
 
+myNoteFiles = [ 'note', 'song', 'film', 'book' ]
+
 #http://stackoverflow.com/questions/5914627/prepend-line-to-beginning-of-a-file
 def prependLine(filename, line):
     with open(filename, 'r+') as f:
@@ -24,17 +26,12 @@ if( argc < 2 ):#too few args
 	print 'za malo argumentow'
 
 else:#if number of args is 2 or more, choose appropriate filepath
-	if( argv[1] == 'note' ):
-		filePath = filePaths['note']
-	elif( argv[1] == 'song' ):
-		filePath = filePaths['song']
-	elif( argv[1] == 'film' ):
-		filePath = filePaths['film']
-	elif( argv[1] == 'book' ):
-		filePath = filePaths['book']
-		#note that there cannot be bad parameter because of the aliases system
+	for i in myNoteFiles:
+		if( argv[1] == i):
+			filePath = filePaths[i]
 
-	#> note #just show content	
+	#> note
+	#just show content	
 	if( argc == 2 ):#just show content
 		file = open(filePath, 'r')
 		fileContent = file.read()
@@ -47,7 +44,8 @@ else:#if number of args is 2 or more, choose appropriate filepath
 		prependLine( filePath, argv[2] )
 		print 'added text: ' + argv[2]
 
-	#>note + "text to process" # where '+' can be any operator
+	#>note + "text to process"
+	# where '+' can be any operator
 	if( argc == 4):
 		oper = argv[2]
 		if( oper == '+' ):
@@ -86,3 +84,18 @@ else:#if number of args is 2 or more, choose appropriate filepath
 #     print 'added text: ' + sys.argv[2]
 #     #
 #     #
+
+
+#bardzo przyblizony kod dla cudzyslowow
+#import sys
+
+#if argv[1] == '+':
+#  joined = ''.join(sys.argv[2:])
+#else
+#  joined = ''.join(sys.argv[1:])
+
+
+
+#no i:
+#list = [ '+', '/' ]
+#'+' in list

@@ -19,6 +19,8 @@ Arguments:
   s - searches for a text and returns all occurences
 
 toDo functionalities:
+  >no parenthesees needed
+  >using subprocessess#wtf that word. look down for more info
   >seeing notes
   >removing notes
   >backup - uploading to the server
@@ -28,3 +30,28 @@ toDo functionalities:
   >dictionary mapping zamiast tylu ifów
     http://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python
     http://www.pydanny.com/why-doesnt-python-have-switch-case.html
+
+
+tagi
+config file
+mp3
+opis idei
+
+wzorowac sie na:
+https://github.com/prodicus/tnote
+
+
+
+
+"""
+zmiana sys.os np. na subprocess:
+
+You shouldn't use os.system to run commands. You should use subprocess instead, for example:
+
+from sys import argv
+import subprocess
+
+cmd = 's.py'
+args = [cmd] + argv[2:]
+subprocess.call(args)
+"""
