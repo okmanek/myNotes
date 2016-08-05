@@ -13,8 +13,6 @@ filePaths = {
 	'book' : '/home/i/.myNotes/book.txt',
 }
 
-myNoteFiles = [ 'note', 'song', 'film', 'book' ]
-
 #http://stackoverflow.com/questions/5914627/prepend-line-to-beginning-of-a-file
 def prependLine(filename, line):
     with open(filename, 'r+') as f:
@@ -26,7 +24,7 @@ if( argc < 2 ):#too few args
 	print 'za malo argumentow'
 
 else:#if number of args is 2 or more, choose appropriate filepath
-	for i in myNoteFiles:
+	for i in filePaths:
 		if( argv[1] == i):
 			filePath = filePaths[i]
 
@@ -64,38 +62,3 @@ else:#if number of args is 2 or more, choose appropriate filepath
 			with open("a.txt", "w") as textObj:
 				for n in list:
 					textObj.write(n)
-
-
-	# 
-	# 	print '+'
-	# elif( argv[2] == '-' ):#usuniecie wpisu
-	# 	print '- not handled yet'
-	# elif( argv[2] == '/' ) or ( argv[2] == '?' ):
-	# 	print 'searching not handled yet'
-
-
-# else:
-#   if(sys.argv[1] == "+"):
-#     #kod dodania do note.txt
-#     #otworz plik z notes
-#     #open(notePath, "w").write("#test firstline\n" + open(notePath).read())
-#     prepend_line(notePath, "");#bcs we want an empty line between lines
-#     prepend_line(notePath, sys.argv[2])
-#     print 'added text: ' + sys.argv[2]
-#     #
-#     #
-
-
-#bardzo przyblizony kod dla cudzyslowow
-#import sys
-
-#if argv[1] == '+':
-#  joined = ''.join(sys.argv[2:])
-#else
-#  joined = ''.join(sys.argv[1:])
-
-
-
-#no i:
-#list = [ '+', '/' ]
-#'+' in list

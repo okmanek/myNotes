@@ -1,7 +1,8 @@
 myNotes is my attempt to create terminal-based notes-storing tool.
-I'll start with using aliases and simple python script.
+I'll start with aliases-based simple python script.
 
 motto of myNotes is:
+
 "OSZCZĘDZAJ RAM GDZIEKOLWIEK JESTEŚ, DZIWKO"
 
 To make it work you need to add an alias:
@@ -11,30 +12,24 @@ alias note ~/code/github-okmanek/myNotes/note.py
 
 Example of usage:
   >note + "dupa"
-  adds note "dupa" to certain file.
+  - adds note "dupa" to certain file.
 
 Arguments:
-  (p or +) - prepends text to the file
-  P|A - removes first|last text in the file
-  s - searches for a text and returns all occurences
+-(p or +) - prepends text to the file
+-P|A - removes first|last text in the file
+-s - searches for a text and returns all occurences
 
 toDo functionalities:
-  >no parenthesees needed
-  >using subprocessess#wtf that word. look down for more info
-  >seeing notes
-  >removing notes
-  >backup - uploading to the server
-  >synchronising
-  >many platforms
-  >Firefox extension adding selected text to the file
-  >dictionary mapping zamiast tylu ifów
-    http://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python
-    http://www.pydanny.com/why-doesnt-python-have-switch-case.html
-
-
-tagi
-config file
-mp3
+-no parenthesees needed
+-using subprocesses
+-removing notes
+-backup - uploading to the server
+-synchronising
+-many platforms
+-Firefox extension adding selected text to the file
+-Tags mechanism
+-Config file
+-Storing other datatypes, e.g. mp3, video
 opis idei
 
 wzorowac sie na:
