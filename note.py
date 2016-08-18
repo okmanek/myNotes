@@ -6,7 +6,6 @@ import argparse
 
 ############ variables ############
 argc = len(argv)
-availableOperators = ('+', '-', '/', '?')#needed?
 searchResultNeighbours = 1 #how many surrounding lines is shown while searching
 opers = [ '+', '/', '?' ]#available operators
 
@@ -54,9 +53,29 @@ else:#if number of args is 2 or more, choose appropriate filepath
         prependLine( filePath, argv[2] )#file opened twice. TODO: fix it
         print 'added text: ' + argv[2]
     else:#>note arg1 arg2 (...)
-      if argv in opers:#>note + "text to process"
-        pass
+      
+      if argv[2] in opers:#>note + "text to process"
+        if argv[2] == '+':
+          textToSave = " ".join(argv[3:])
+          prependLine(filePath, "")
+          prependLine( filePath, textToSave )#file opened twice. TODO: fix it
+          print 'text added: ' + textToSave
+        elif argv[2] == '-':
+          print 'code for minus. not existing yet'
+          print 'odejmowanie'
+          #not tested yet!!!
+          lineNum = os.system('grep -nr %s %s | head -c 1' % (searchedText, fileName))
+          with open(fileName, "r") as textObj:
+            list = list(textObj)
+          del list[ lineNum - 1 ]#sasiedzi - dodac
+          with open("a.txt", "w") as textObj:
+            for n in list:
+              textObj.write(n)
+        elif argv[2] == '/' or argv[2] == '?':
+          print 'this is what i found:'
+          os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[3], filePath))#-nr?
         #zapisanie do pliku argv[2:] (chyba)
+
       else:#>note dupa1 dupa2 dupa3
         #pass
         textToSave = " ".join(argv[2:])
@@ -64,26 +83,3 @@ else:#if number of args is 2 or more, choose appropriate filepath
         prependLine( filePath, textToSave )#file opened twice. TODO: fix it
         print 'added text: ' + textToSave
         #zapisanie do pliku argv[1:] (chyba)
-  
-"""
-  #>note + "text to process"
-  # where '+' can be any operator
-  if( argc == 4):
-    oper = argv[2]
-    if( oper == '+' ):
-      prependLine( filePath, "" )
-      prependLine( filePath, argv[3] )
-      print 'added text: ' + argv[3]
-    elif( oper == '/' ) or (oper == '?' ):
-      os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[3], filePath))#-nr?
-    elif( oper == '-' ):
-      print 'odejmowanie'
-      #not tested yet!!!
-      lineNum = os.system('grep -nr %s %s | head -c 1' % (searchedText, fileName))
-      with open(fileName, "r") as textObj:
-        list = list(textObj)
-      del list[ lineNum - 1 ]#sasiedzi - dodac
-      with open("a.txt", "w") as textObj:
-        for n in list:
-          textObj.write(n)
-"""
