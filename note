@@ -39,28 +39,28 @@ def showContent():
   file.close()
 
 ############ code itself ############
-if( argc < 2 ):#only happens when you execute script without using alias
+if( argc < 1 ):#only happens when you execute script without using alias
   print 'za malo argumentow'
 
 else:#if number of args is 2 or more, choose appropriate filepath
 
   #> note
-  if( argc == 2 ):#just show content
+  if( argc == 1 ):#just show content
     showContent()
   else:
-    if(argc == 3):#>note arg1
-      if argv[2] in opers:#>note +
+    if(argc == 2):#>note arg1
+      if argv[1] in opers:#>note +
         print 'blad, podales operator bez zadnych danych'
         #so you cannot note for example plus sign. I doubt it is a problem though
       else:#note dupa
         prependLine(filePath, "")
-        prependLine( filePath, argv[2] )#file opened twice. TODO: fix it
-        print 'added text: ' + argv[2]
+        prependLine( filePath, argv[1] )#file opened twice. TODO: fix it
+        print 'added text: ' + argv[1]
     else:#>note arg1 arg2 (...)
       
-      if argv[2] in opers:#>note + "text to process"
-        if argv[2] == '+':
-          textToSave = " ".join(argv[3:])
+      if argv[1] in opers:#>note + "text to process"
+        if argv[1] == '+':
+          textToSave = " ".join(argv[2:])
           prependLine(filePath, "")
           prependLine( filePath, textToSave )#file opened twice. TODO: fix it
           print 'text added: ' + textToSave
@@ -75,13 +75,13 @@ else:#if number of args is 2 or more, choose appropriate filepath
           with open("a.txt", "w") as textObj:
             for n in list:
               textObj.write(n)
-        elif argv[2] == '/' or argv[2] == '?':
+        elif argv[1] == '/' or argv[1] == '?':
           print 'this is what i found:'
-          os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[3], filePath))#-nr?
+          os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[2], filePath))#-nr?
         #save to file argv[3:] (i think so)
 
       else:#>note dupa1 dupa2 dupa3
-        textToSave = " ".join(argv[2:])
+        textToSave = " ".join(argv[1:])
         prependLine(filePath, "")
         prependLine( filePath, textToSave )#file opened twice. TODO: fix it
         print 'added text: ' + textToSave
