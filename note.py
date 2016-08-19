@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #----------------------------------------------------------------------------
 #"THE BEER-WARE LICENSE" (Revision 42):
@@ -12,9 +12,6 @@
 ############ imports ############
 from sys import argv
 import os
-import argparse
-
-#TODO: all in 1 class
 
 #arguments:
 #>note
@@ -22,15 +19,10 @@ import argparse
 
 ############ variables ############
 argc = len(argv)
-searchResultNeighbours = 1 #how many surrounding lines is shown while searching
+searchResultNeighbours = 1#how many surrounding lines is shown while searching
 opers = [ '+', '/', '?' ]#available operators
 
-filePaths = {
-  'note' : '/home/i/.myNotes/note.txt',
-  'song' : '/home/i/.myNotes/song.txt',
-  'film' : '/home/i/.myNotes/film.txt',
-  'book' : '/home/i/.myNotes/book.txt',
-}
+filePath = '/home/i/.myNotes/note.txt'
 
 ############ functions ############
 #http://stackoverflow.com/questions/5914627/prepend-line-to-beginning-of-a-file
@@ -51,12 +43,8 @@ if( argc < 2 ):#only happens when you execute script without using alias
   print 'za malo argumentow'
 
 else:#if number of args is 2 or more, choose appropriate filepath
-  for i in filePaths:
-    if( argv[1] == i):
-      filePath = filePaths[i]
 
   #> note
-  #just show content  
   if( argc == 2 ):#just show content
     showContent()
   else:
@@ -83,19 +71,18 @@ else:#if number of args is 2 or more, choose appropriate filepath
           lineNum = os.system('grep -nr %s %s | head -c 1' % (searchedText, fileName))
           with open(fileName, "r") as textObj:
             list = list(textObj)
-          del list[ lineNum - 1 ]#sasiedzi - dodac
+          del list[ lineNum - 1 ]#add neighbours
           with open("a.txt", "w") as textObj:
             for n in list:
               textObj.write(n)
         elif argv[2] == '/' or argv[2] == '?':
           print 'this is what i found:'
           os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[3], filePath))#-nr?
-        #zapisanie do pliku argv[2:] (chyba)
+        #save to file argv[3:] (i think so)
 
       else:#>note dupa1 dupa2 dupa3
-        #pass
         textToSave = " ".join(argv[2:])
         prependLine(filePath, "")
         prependLine( filePath, textToSave )#file opened twice. TODO: fix it
         print 'added text: ' + textToSave
-        #zapisanie do pliku argv[1:] (chyba)
+        #save to file argv[2:] (i think so)

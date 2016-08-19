@@ -1,52 +1,35 @@
+Idea
 myNotes is my attempt to create terminal-based notes-storing tool.
-I'll start with aliases-based simple python script.
+It's supposed to be as simple and quick to use as possible.
 
-motto of myNotes is:
-
+Motto of myNotes is:
 "OSZCZĘDZAJ RAM GDZIEKOLWIEK JESTEŚ, DZIWKO"
 
-To make it work you need to add an alias:
->alias note ~/note.py
-where ~/note.py is path to python script
-alias note ~/code/github-okmanek/myNotes/note.py
+History
+It started as alias-based project. then I switched to just putting script file
+in /usr/bin/
+it has some ups and downs:
+
+pros:
+  -simplicity
+  -don't need to create aliases for each file
+  -don't need to use maps to store file paths
+cons:
+  -need to create different script for each note file
+
+instalation guide:
+1. copy 'note' to /usr/bin/
+2. change 'filePath' variable to match you path of a file
+
+installer will be created in the future
 
 Example of usage:
-  >note + "dupa"
-  - adds note "dupa" to certain file.
+>note         #shows content of a file
+>note + dupa  #adds 'dupa' to a file. adding is a default behaviour, so...
+>note dupa    #also adds 'dupa' to a file
 
-Arguments:
--(p or +) - prepends text to the file
--P|A - removes first|last text in the file
--s - searches for a text and returns all occurences
-
-toDo functionalities:
--no parenthesees needed
--using subprocesses
--removing notes
--backup - uploading to the server
--synchronising
--many platforms
--Firefox extension adding selected text to the file
--Tags mechanism
--Config file
--Storing other datatypes, e.g. mp3, video
-opis idei
+>note / dupa  #searches for 'dupa'
+>note
 
 wzorowac sie na:
 https://github.com/prodicus/tnote
-
-
-
-
-"""
-zmiana sys.os np. na subprocess:
-
-You shouldn't use os.system to run commands. You should use subprocess instead, for example:
-
-from sys import argv
-import subprocess
-
-cmd = 's.py'
-args = [cmd] + argv[2:]
-subprocess.call(args)
-"""
