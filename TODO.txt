@@ -1,0 +1,19 @@
+>pipe! less!
+
+>backup: uploading to a file
+>Firefox extension noting selected text
+
+>new line should work (propably)
+
+>storing other filetypes, e.g. mp3, video, in fact: anything
+
+>synchronising many files
+>many platforms
+
+>all in 1 class
+>add more operators, like: p (prepend), a (append)
+>test functionality of removing notes. think if it's necessary (i don't trust it)
+>using subprocessess
+
+>tags mechanism
+>config file / installer
