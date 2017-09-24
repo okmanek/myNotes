@@ -12,6 +12,7 @@
 ############ imports ############
 from sys import argv
 import os
+import subprocess
 
 #arguments:
 #>note
@@ -21,7 +22,6 @@ import os
 argc = len(argv)
 searchResultNeighbours = 1#how many surrounding lines is shown while searching
 opers = [ '+', '/', '?' ]#available operators
-
 filePath = '/home/i/.myNotes/note.txt'
 
 ############ functions ############
@@ -64,7 +64,7 @@ else:#if number of args is 2 or more, choose appropriate filepath
           prependLine(filePath, "")
           prependLine( filePath, textToSave )#file opened twice. TODO: fix it
           print 'text added: ' + textToSave
-        elif argv[2] == '-':
+        elif argv[1] == '-':
           print 'code for minus. not existing yet'
           print 'odejmowanie'
           #not tested yet!!!
@@ -76,8 +76,12 @@ else:#if number of args is 2 or more, choose appropriate filepath
             for n in list:
               textObj.write(n)
         elif argv[1] == '/' or argv[1] == '?':
+          
           print 'this is what i found:'
-          os.system('grep -C %d -n %r %r' % (searchResultNeighbours, argv[2], filePath))#-nr?
+          cmd = "grep -C " + str(searchResultNeighbours) + " -n " + argv[2] + " " + filePath
+          process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+          stdout, stderr = process.communicate()
+          print stdout
         #save to file argv[3:] (i think so)
 
       else:#>note dupa1 dupa2 dupa3

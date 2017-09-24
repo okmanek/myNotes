@@ -46,7 +46,8 @@ else:#if number of args is 2 or more, choose appropriate filepath
 
   #> note
   if( argc == 1 ):#just show content
-    showContent()
+	vim $filePath
+#showContent()
   else:
     if(argc == 2):#>note arg1
       if argv[1] in opers:#>note +
