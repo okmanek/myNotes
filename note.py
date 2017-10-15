@@ -35,12 +35,12 @@ def prependLine(filename, line):
 def showContent():
   file = open(filePath, 'r')
   fileContent = file.read()
-  print fileContent
+  print(fileContent)
   file.close()
 
 ############ code itself ############
 if( argc < 1 ):#only happens when you execute script without using alias
-  print 'za malo argumentow'
+  print('za malo argumentow')
 
 else:#if number of args is 2 or more, choose appropriate filepath
 
@@ -50,12 +50,12 @@ else:#if number of args is 2 or more, choose appropriate filepath
   else:
     if(argc == 2):#>note arg1
       if argv[1] in opers:#>note +
-        print 'blad, podales operator bez zadnych danych'
+        print('blad, podales operator bez zadnych danych')
         #so you cannot note for example plus sign. I doubt it is a problem though
       else:#note dupa
         prependLine(filePath, "")
         prependLine( filePath, argv[1] )#file opened twice. TODO: fix it
-        print 'added text: ' + argv[1]
+        print('added text: ' + argv[1])
     else:#>note arg1 arg2 (...)
       
       if argv[1] in opers:#>note + "text to process"
@@ -63,10 +63,10 @@ else:#if number of args is 2 or more, choose appropriate filepath
           textToSave = " ".join(argv[2:])
           prependLine(filePath, "")
           prependLine( filePath, textToSave )#file opened twice. TODO: fix it
-          print 'text added: ' + textToSave
+          print('text added: ' + textToSave)
         elif argv[1] == '-':
-          print 'code for minus. not existing yet'
-          print 'odejmowanie'
+          print('code for minus. not existing yet')
+          print('odejmowanie')
           #not tested yet!!!
           lineNum = os.system('grep -nr %s %s | head -c 1' % (searchedText, fileName))
           with open(fileName, "r") as textObj:
@@ -77,16 +77,16 @@ else:#if number of args is 2 or more, choose appropriate filepath
               textObj.write(n)
         elif argv[1] == '/' or argv[1] == '?':
           
-          print 'this is what i found:'
+          print('this is what i found:')
           cmd = "grep -C " + str(searchResultNeighbours) + " -n " + argv[2] + " " + filePath
           process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
           stdout, stderr = process.communicate()
-          print stdout
+          print(stdout)
         #save to file argv[3:] (i think so)
 
       else:#>note dupa1 dupa2 dupa3
         textToSave = " ".join(argv[1:])
         prependLine(filePath, "")
         prependLine( filePath, textToSave )#file opened twice. TODO: fix it
-        print 'added text: ' + textToSave
+        print('added text: ' + textToSave)
         #save to file argv[2:] (i think so)
